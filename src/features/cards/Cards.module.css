@@ -20,3 +20,22 @@
     color:darkred;
     margin: 10px;
 }
+.back{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: flex-start;
+    color: black;
+    height: 60px;
+}
+.back span {
+    font-weight:600 ;
+    font-size: 22px;
+    line-height: 26.82px ;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.back span:hover {
+    color: darkorange;
+}

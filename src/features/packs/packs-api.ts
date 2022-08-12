@@ -4,8 +4,8 @@ export const packsAPI = {
     getPacks(data: GetPacksParamsType = {}) {
         return instance.get<GetPacksResponseType>('cards/pack', {params: data});
     },
-    createPack() {
-        return instance.post('cards/pack', {cardsPack: {name: 'pack', deckCover: 'some url', private: false}});
+    createPack(name:string,privat:boolean) {
+        return instance.post('cards/pack', {cardsPack: {name: name, deckCover: 'some url', private: privat}});
     },
     deletePack(packID: string) {
         return instance.delete(`cards/pack?id=${packID}`);
@@ -59,5 +59,6 @@ export type GetPacksParamsType = {
 export type UpdatePackParamsType = {
     _id: string
     name?: string
+    private?:boolean
 }
 

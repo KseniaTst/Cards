@@ -1,12 +1,20 @@
 import style from '../Packs.module.css';
 import {Button} from '@mui/material';
 import {useAppDispatch, useAppSelector} from '../../../common/hooks/hooks';
-import {addPack, setCurrentPage, setRequestedPacks} from '../packs-reducer';
+import {addPack, RequestedPacksType, setCurrentPage, setRequestedPacks} from '../packs-reducer';
+import {AddModal} from "../../../common/modals/customModals/packsList/AddModal";
+import React from "react";
 
 export const PacksHeader = () => {
 
     const dispatch = useAppDispatch();
-    const requestedPacks = useAppSelector(state => state.packs.requestedPacks);
+    const user_id = useAppSelector<string>(state => state.profile.UserData._id);
+    const requestedPacks = useAppSelector<RequestedPacksType>(state => state.packs.requestedPacks);
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => setOpen(false);
+    const handleOpen=()=>setOpen(true)
 
     const onUserPacksButtonClickHandler = () => {
         dispatch(setCurrentPage(1));
@@ -18,8 +26,8 @@ export const PacksHeader = () => {
         dispatch(setRequestedPacks('All'));
     };
 
-    const onAddPackButtonClickHandler = () => {
-        dispatch(addPack());
+    const onClickSaveHandler = ( name:string, isPrivate:boolean) => {
+        dispatch(addPack(user_id,name,isPrivate));
     };
 
     return (
@@ -41,7 +49,10 @@ export const PacksHeader = () => {
                     ALL PACKS
                 </Button>
             </div>
-            <Button variant={'contained'} onClick={onAddPackButtonClickHandler}>ADD NEW PACK</Button>
+            <AddModal packName={''} open={open} handleOpen={handleOpen} handleClose={handleClose}
+                      onClickSaveHandler={onClickSaveHandler}>
+            <Button variant={'contained'} onClick={handleOpen}>ADD NEW PACK</Button>
+            </AddModal>
         </div>
     );
 };

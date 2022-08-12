@@ -1,0 +1,28 @@
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+
+}
+.imgBlock{
+    height: 36px;
+    width: 36px;
+    overflow: hidden;
+    object-fit: cover;
+    background-color: black;
+    margin-left: 15px;
+
+}
+.imgBlock img{
+    height: 100%;
+    width: 100%;
+}
+.userInfoBlock{
+    display: flex;
+    flex-direction: row;
+}
+.userMenu{
+    position: absolute;
+    z-index: 5;
+    height: 104px;
+    width: 122px;
+}
