@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, MouseEvent} from 'react';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
@@ -6,7 +6,6 @@ import {ResponseCardPackType} from '../packs-api';
 import {setPacksSortBy, setPacksSortOrder} from '../packs-reducer';
 import {Box} from '@mui/material';
 import {useAppDispatch, useAppSelector} from '../../../common/hooks/hooks';
-import {Order} from '../../../utils/sort-utils';
 import {EnhancedTableHead} from '../../../common/enhancedTableHead/EnhancedTableHead';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -15,14 +14,14 @@ import {PacksTable} from './packs-list-table/PacksTable';
 
 export const PacksList = () => {
 
-    const [orderBy, setOrderBy] = React.useState<keyof ResponseCardPackType>('updated');
-    const [dense, setDense] = React.useState(false);
+    const [orderBy, setOrderBy] = useState<keyof ResponseCardPackType>('updated');
+    const [dense, setDense] = useState(false);
 
     const dispatch = useAppDispatch();
-    const order = useAppSelector<Order>(state => state.packs.sortOrder);
+    const order = useAppSelector(state => state.packs.sortOrder);
 
     const handleRequestSort = (
-        event: React.MouseEvent<unknown>,
+        event: MouseEvent<unknown>,
         property: keyof ResponseCardPackType,
     ) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -46,7 +45,7 @@ export const PacksList = () => {
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
                         />
-                        <PacksTable orderBy={orderBy}/>
+                        <PacksTable/>
                     </Table>
                 </TableContainer>
                 <PacksPagination/>

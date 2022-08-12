@@ -6,9 +6,9 @@ import {useAppDispatch, useAppSelector} from '../../../../common/hooks/hooks';
 export const PacksPagination = () => {
 
     const dispatch = useAppDispatch();
-    const page = useAppSelector<number>(state => state.packs.currentPage);
-    const pageCount = useAppSelector<number>(state => state.packs.packsPerPage);
-    const packsAmount = useAppSelector<number>(state => state.packs.packsAmount);
+    const page = useAppSelector(state => state.packs.currentPage);
+    const pageCount = useAppSelector(state => state.packs.packsPerPage);
+    const packsAmount = useAppSelector(state => state.packs.packsAmount);
 
     const onPageChangeHandler = (event: unknown, newPage: number) => {
         dispatch(setCurrentPage(newPage + 1)); // initially newPage value is equal to currentPage value

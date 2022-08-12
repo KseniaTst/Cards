@@ -1,8 +1,7 @@
-import {AppRootStateType, AppThunk} from '../../app/store';
+import {AppThunk} from '../../app/store';
 import {setAppRequestStatusAC} from '../../app/app-reducer';
 import {packsAPI, ResponseCardPackType, UpdatePackParamsType} from './packs-api';
 import {handleServerNetworkError} from '../../utils/error-utils';
-import {Order} from '../../utils/sort-utils';
 
 const initialState = {
     packsList: [] as ResponseCardPackType[],
@@ -67,7 +66,8 @@ export const setMinAndMaxCardsAmount = (minAndMaxCardsAmount: number[]) => ({
 } as const);
 
 //thunks
-export const fetchPacks = (user_id?: string): AppThunk => async (dispatch, getState: () => AppRootStateType) => {
+export const fetchPacks = (): AppThunk => async (dispatch, getState) => {
+    const user_id = getState().profile.UserData._id;
     const state = getState().packs;
     const page = state.currentPage;
     const pageCount = state.packsPerPage;
@@ -97,11 +97,11 @@ export const fetchPacks = (user_id?: string): AppThunk => async (dispatch, getSt
     }
 };
 
-export const addPack = (user_id: string): AppThunk => async (dispatch) => {
+export const addPack = (): AppThunk => async (dispatch) => {
     try {
         dispatch(setAppRequestStatusAC('loading'));
         await packsAPI.createPack();
-        dispatch(fetchPacks(user_id));
+        dispatch(fetchPacks());
     } catch (e) {
         handleServerNetworkError(e, dispatch);
     } finally {
@@ -109,11 +109,11 @@ export const addPack = (user_id: string): AppThunk => async (dispatch) => {
     }
 };
 
-export const removePack = (packID: string, user_id: string): AppThunk => async (dispatch) => {
+export const removePack = (packID: string): AppThunk => async (dispatch) => {
     try {
         dispatch(setAppRequestStatusAC('loading'));
         await packsAPI.deletePack(packID);
-        dispatch(fetchPacks(user_id));
+        dispatch(fetchPacks());
     } catch (e) {
         handleServerNetworkError(e, dispatch);
     } finally {
@@ -121,11 +121,11 @@ export const removePack = (packID: string, user_id: string): AppThunk => async (
     }
 };
 
-export const changePack = (updateData: UpdatePackParamsType, user_id: string): AppThunk => async (dispatch) => {
+export const changePack = (updateData: UpdatePackParamsType): AppThunk => async (dispatch) => {
     try {
         dispatch(setAppRequestStatusAC('loading'));
         await packsAPI.updatePack(updateData);
-        dispatch(fetchPacks(user_id));
+        dispatch(fetchPacks());
     } catch (e) {
         handleServerNetworkError(e, dispatch);
     } finally {
@@ -161,3 +161,5 @@ export type PacksReducerActionTypes = setPacksListType
     | setMinAndMaxCardsAmountType
 
 export type RequestedPacksType = `User's` | 'All'
+
+export type Order = 'asc' | 'desc';

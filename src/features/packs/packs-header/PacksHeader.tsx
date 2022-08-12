@@ -1,13 +1,12 @@
 import style from '../Packs.module.css';
 import {Button} from '@mui/material';
 import {useAppDispatch, useAppSelector} from '../../../common/hooks/hooks';
-import {addPack, RequestedPacksType, setCurrentPage, setRequestedPacks} from '../packs-reducer';
+import {addPack, setCurrentPage, setRequestedPacks} from '../packs-reducer';
 
 export const PacksHeader = () => {
 
     const dispatch = useAppDispatch();
-    const user_id = useAppSelector<string>(state => state.profile.UserData._id);
-    const requestedPacks = useAppSelector<RequestedPacksType>(state => state.packs.requestedPacks);
+    const requestedPacks = useAppSelector(state => state.packs.requestedPacks);
 
     const onUserPacksButtonClickHandler = () => {
         dispatch(setCurrentPage(1));
@@ -20,7 +19,7 @@ export const PacksHeader = () => {
     };
 
     const onAddPackButtonClickHandler = () => {
-        dispatch(addPack(user_id));
+        dispatch(addPack());
     };
 
     return (

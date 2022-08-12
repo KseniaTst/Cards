@@ -7,7 +7,7 @@ import {setSearchedValue} from '../packs-reducer';
 export const PacksSearchField = () => {
 
     const dispatch = useAppDispatch();
-    const packName = useAppSelector<string>(state => state.packs.searchedValue);
+    const packName = useAppSelector(state => state.packs.searchedValue);
 
     const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearchedValue(e.currentTarget.value));

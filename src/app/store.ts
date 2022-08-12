@@ -16,6 +16,7 @@ import {ActionsAppReducerType, appReducer} from './app-reducer';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {packsReducer, PacksReducerActionTypes} from '../features/packs/packs-reducer';
 import {ActionsCardsReducer, cardsReducer} from "../features/cards/cards-reducer";
+import {learnReducer, LearnReducerActionTypes} from '../features/learn/learn-reducer';
 
 const rootReducer = combineReducers({
     app: appReducer,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
     test: testReducer,
     cards: cardsReducer,
     packs: packsReducer,
+    learn: learnReducer,
 });
 
 const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
@@ -43,6 +45,7 @@ export type AppActionsType = ActionsLoginType
     | ActionsProfileType
     | ActionsCardsReducer
     | PacksReducerActionTypes
+    | LearnReducerActionTypes
 
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AppActionsType>
