@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Box from '@mui/material/Box';
 import {visuallyHidden} from '@mui/utils';
-import {Order} from '../../utils/sort-utils';
+import {Order} from '../../features/packs/packs-reducer';
 
 interface EnhancedTableProps {
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof ResponseCardPackType) => void;

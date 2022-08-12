@@ -9,6 +9,8 @@ import {changeCardsTotalCountAC, deleteCard, updateCard} from "../cards-reducer"
 
 import {useAppDispatch, useAppSelector} from "../../../common/hooks/hooks";
 import {convertDate} from "../../../utils/convert-date";
+import {DeleteCardModal} from "../../../modals/card/DeleteCardModal/DeleteCardModal";
+import {UpdateCardModal} from "../../../modals/card/UpdateCardModal/UpdateCardModal";
 
 type CardsTableRowsPropsType = {
     rows: CardType[]
@@ -33,11 +35,6 @@ export const CardsTableRows: React.FC<CardsTableRowsPropsType> = (props) => {
         dispatch(deleteCard(cardID, cardsPackID))
     }
 
-    const updateCardHandler = (cardID: string, cardsPackID: string) => {
-        dispatch(updateCard(cardID, cardsPackID))
-    }
-
-
     return (
         <TableBody>
             {rows.map((row) => (
@@ -53,18 +50,20 @@ export const CardsTableRows: React.FC<CardsTableRowsPropsType> = (props) => {
                     <TableCell valign={"middle"}>
                         <div style={{display: "flex", alignItems: "center"}}>
                             <Rating name="disabled" value={row.grade} disabled/>
-                            <IconButton
-                                onClick={() => deleteCardHandler(row._id, row.cardsPack_id)}
-                                disabled={userID !== row.user_id}
-                            >
-                                <Delete/>
-                            </IconButton>
-                            <IconButton
-                                onClick={() => updateCardHandler(row._id, row.cardsPack_id)}
-                                disabled={userID !== row.user_id}
-                            >
-                                <Edit/>
-                            </IconButton>
+                            <DeleteCardModal cardPackID={row.cardsPack_id} cardID={row._id} isDisabled={userID !== row.user_id}/>
+                            {/*<IconButton*/}
+                            {/*    onClick={() => updateCardHandler(row._id, row.cardsPack_id)}*/}
+                            {/*    disabled={userID !== row.user_id}*/}
+                            {/*>*/}
+                            {/*    <Edit/>*/}
+                            {/*</IconButton>*/}
+                            <UpdateCardModal
+                                cardID={row._id}
+                                cardPackID={row.cardsPack_id}
+                                isDisabled={userID !== row.user_id}
+                                answerText={row.answer}
+                                questionText={row.question}
+                            />
                         </div>
                     </TableCell>
                 </TableRow>

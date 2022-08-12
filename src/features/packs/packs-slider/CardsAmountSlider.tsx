@@ -7,8 +7,8 @@ import {useState} from 'react';
 export const CardsAmountSlider = () => {
 
     const dispatch = useAppDispatch();
-    const min = useAppSelector<number>(state => state.packs.minAndMaxCardsAmount[0]);
-    const max = useAppSelector<number>(state => state.packs.minAndMaxCardsAmount[1]);
+    const min = useAppSelector(state => state.packs.minAndMaxCardsAmount[0]);
+    const max = useAppSelector(state => state.packs.minAndMaxCardsAmount[1]);
 
     const [value, setValue] = useState<number | number[]>([0, 110]);
 

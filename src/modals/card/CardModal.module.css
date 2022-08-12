@@ -1,0 +1,11 @@
+.addCardModal__text {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.cardModal__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

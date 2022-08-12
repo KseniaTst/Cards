@@ -1,21 +1,16 @@
-import {
-    cardsAPI,
-    CardType,
-    getCardQueryParams,
-    RequestCreateCardType,
-    RequestUpdateCardType,
-    ResponseGetCardType
-} from "./cards-api";
-import {AppThunk} from "../../app/store";
-import {AxiosError} from "axios";
-import {setAppErrorAC, setAppRequestStatusAC} from "../../app/app-reducer";
+import {cardsAPI, CardType, getCardQueryParams, RequestCreateCardType, ResponseGetCardType} from './cards-api';
+import {AppThunk} from '../../app/store';
+import {AxiosError} from 'axios';
+import {setAppErrorAC, setAppRequestStatusAC} from '../../app/app-reducer';
+import {sendCardGradeQueryParams} from '../learn/learn-api';
 
-const GET_CARDS = "CARDS-REDUCER/GET-CARDS"
-const CLEAR_CARDS_LIST = "CARDS-REDUCER/CLEAR_CARDS_LIST"
-const ADD_QUERY_PARAMS = "CARDS-REDUCER/ADD_QUERY_PARAMS"
-const SET_SORT_PARAMS = "CARDS-REDUCER/SET_SORT_PARAMS"
-const CLEAR_SORT_PARAMS = "CARDS-REDUCER/CLEAR_SORT_PARAMS"
-const CHANGE_CARDS_TOTAL_COUNT = "CARDS-REDUCER/CHANGE_CARDS_TOTAL_COUNT"
+const GET_CARDS = 'CARDS-REDUCER/GET-CARDS';
+const CLEAR_CARDS_LIST = 'CARDS-REDUCER/CLEAR_CARDS_LIST';
+const ADD_QUERY_PARAMS = 'CARDS-REDUCER/ADD_QUERY_PARAMS';
+const SET_SORT_PARAMS = 'CARDS-REDUCER/SET_SORT_PARAMS';
+const CLEAR_SORT_PARAMS = 'CARDS-REDUCER/CLEAR_SORT_PARAMS';
+const CHANGE_CARDS_TOTAL_COUNT = 'CARDS-REDUCER/CHANGE_CARDS_TOTAL_COUNT';
+const SET_CARDS_GRADE = 'CARDS-REDUCER/SET_CARDS_GRADE';
 
 
 const initialState = {
@@ -67,11 +62,19 @@ export type ActionsCardsReducer = setCardsACType
     | SetSortParamsACType
     | clearSortParamsACType
     | changeCardsTotalCountACType
+    | setCardGradeACType
 //ACTIONS
 export const setCardsAC = (data: ResponseGetCardType) => ({type: GET_CARDS, data} as const)
 export type setCardsACType = ReturnType<typeof setCardsAC>
 
-export const ClearCardsListAC = () => ({type: CLEAR_CARDS_LIST} as const)
+export const setCardGradeAC = (data: sendCardGradeQueryParams, shots: number) => ({
+    type: SET_CARDS_GRADE,
+    data,
+    shots,
+} as const);
+export type setCardGradeACType = ReturnType<typeof setCardGradeAC>
+
+export const ClearCardsListAC = () => ({type: CLEAR_CARDS_LIST} as const);
 export type ClearCardsListACType = ReturnType<typeof ClearCardsListAC>
 
 export const AddQueryParamsAC = (newQueryParams: getCardQueryParams) => ({
@@ -146,13 +149,13 @@ export const deleteCard = (cardID: string, cardsPackID: string): AppThunk => (di
         })
 }
 
-export const updateCard = (cardID: string, cardsPackID: string): AppThunk => (dispatch, getState) => {
+export const updateCard = (cardID: string, cardsPackID: string,question:string,answer:string): AppThunk => (dispatch, getState) => {
     dispatch(setAppRequestStatusAC('loading'))
     cardsAPI.updateCard({
         card: {
             _id: cardID,
-            question: "updated question",
-            answer: "updated answer"
+            question,
+            answer
         }
     })
         .then((res) => {

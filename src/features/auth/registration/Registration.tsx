@@ -3,7 +3,7 @@ import {Button, FormGroup, TextField} from '@mui/material';
 import {useFormik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, AppRootStateType} from '../../../app/store';
-import {Navigate, NavLink, useNavigate} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import {register} from './registration-reducer';
 import {PATH} from '../../../common/main/Main';
 import React from 'react';

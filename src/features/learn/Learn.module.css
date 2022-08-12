@@ -1,0 +1,28 @@
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.circleLoading {
+    position: fixed;
+    top: 30%;
+    text-align: center;
+    width: 100%;
+}
+
+.linkWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    font-size: 22px;
+    font-weight: 600;
+    padding-left: 5px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.link:hover {
+    color: darkorange;
+}

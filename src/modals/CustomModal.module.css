@@ -1,0 +1,20 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}
+.buttonBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+.textContainer{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.textContainer span{
+    padding-top: 10px;
+}

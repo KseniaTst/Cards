@@ -8,7 +8,8 @@ import {PasswordForgot} from '../../features/auth/passwordForgot/PasswordForgot'
 import {PasswordNew} from '../../features/auth/passwordNew/PasswordNew';
 import {Test} from '../../features/auth/test/Test';
 import {Packs} from '../../features/packs/Packs';
-import { Cards } from '../../features/cards/Cards';
+import {Cards} from '../../features/cards/Cards';
+import {Learn} from '../../features/learn/Learn';
 
 
 export const PATH = {
@@ -21,6 +22,7 @@ export const PATH = {
     TEST: '/test',
     PACKS: '/packs',
     CARDS: '/cards/:cardsPackID',
+    LEARN: '/learn/:cardsPack_id',
 };
 
 export const Main = () => {
@@ -39,7 +41,7 @@ export const Main = () => {
                 <Route path={PATH.TEST} element={<Test/>}/>
                 <Route path={PATH.PACKS} element={<Packs/>}/>
                 <Route path={PATH.CARDS} element={<Cards/>}/>
-
+                <Route path={PATH.LEARN} element={<Learn/>}/>
             </Routes>
         </div>
     );
