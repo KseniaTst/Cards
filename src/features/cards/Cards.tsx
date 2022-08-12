@@ -8,8 +8,8 @@ import {addCard, ClearCardsListAC,  getCards} from "./cards-reducer";
 import {CardsSearchByQuestion} from "./cards-search-by-question/CardsSearchByQuestion";
 import {CardsPagination} from "./cards-pagination/Cards-pagination";
 import { useAppDispatch, useAppSelector } from '../../common/hooks/hooks';
-import {AddNewCardModal} from "../../modals/card/AddNewCardModal/AddNewCardModal";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import {AddNewCardModal} from "../../modals/card/AddNewCardModal/AddNewCardModal";
 
 
 export const Cards: React.FC = () => {

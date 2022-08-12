@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box/Box';
 import FormControl from '@mui/material/FormControl/FormControl';
-import InputLabel from '@mui/material/InputLabel/InputLabel';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select/Select';
+import Select, {SelectChangeEvent} from '@mui/material/Select/Select';
 import React from 'react';
 
 export const AddNewCardSelectFormatQuestion = () => {
@@ -13,7 +12,7 @@ export const AddNewCardSelectFormatQuestion = () => {
     };
 
     return (
-        <Box sx={{ minWidth: 120 }}>
+        <Box sx={{minWidth: 120}}>
             <FormControl fullWidth>
                 <Select
                     value={age}

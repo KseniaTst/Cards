@@ -24,7 +24,7 @@ export const DeleteModal=(props:PropsType)=>{
 
     const deletePackHandler=()=>{
         setOpen(false)
-        dispatch(removePack(props.packId,props.userId))
+        dispatch(removePack(props.packId))
     }
 
 

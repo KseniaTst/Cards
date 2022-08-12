@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import Button from "@mui/material/Button/Button";
-import {CustomModal} from "../../CustomModal";
-import {IconButton} from "@mui/material";
-import { Edit} from "@mui/icons-material";
-import style from "../CardModal.module.css";
-import { updateCard} from "../../../features/cards/cards-reducer";
-import {useAppDispatch, useAppSelector} from "../../../common/hooks/hooks";
-import {UpdateCardModalQuestion} from "./UpdateCardModalQuestion";
-import {UpdateCardModalAnswer} from "./UpdateCardModalAnswer";
+import Button from '@mui/material/Button/Button';
+import {CustomModal} from '../../CustomModal';
+import {IconButton} from '@mui/material';
+import {Edit} from '@mui/icons-material';
+import style from '../CardModal.module.css';
+import {updateCard} from '../../../features/cards/cards-reducer';
+import {useAppDispatch} from '../../../common/hooks/hooks';
+import {UpdateCardModalQuestion} from './UpdateCardModalQuestion';
+import {UpdateCardModalAnswer} from './UpdateCardModalAnswer';
 
 type UpdateCardModalPropsType = {
     cardID:string
