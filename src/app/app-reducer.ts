@@ -32,6 +32,7 @@ export type InitialStateType = {
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 export type ActionsAppReducerType = setAppErrorACType
+
     | setAppRequestStatusACType
     | setAppIsInitializedACType
 
